@@ -12,7 +12,7 @@ app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
 db = SQLAlchemy(app)
 
-# ==================== ACCOUNTS MODEL ====================
+# ACCOUNTS MODEL
 class Account(db.Model):
     __tablename__ = 'accounts'
     
@@ -28,7 +28,7 @@ class Account(db.Model):
     def check_password(self, password):
         return check_password_hash(self.password, password)
 
-# ==================== REGISTRATIONS MODEL ====================
+# REGISTRATIONS MODEL
 class User(db.Model):
     __tablename__ = 'users'
     
@@ -74,7 +74,7 @@ with app.app_context():
     db.drop_all()  # Drop all existing tables
     db.create_all()  # Create fresh tables
 
-# ==================== AUTHENTICATION ROUTES ====================
+# AUTHENTICATION ROUTES 
 
 @app.route('/')
 def index():
@@ -155,12 +155,12 @@ def logout():
     print(f"✓ Logout: {username}")
     return redirect(url_for('login'))
 
-# ==================== HOME & REGISTRATION ROUTES ====================
-
+# HOME & REGISTRATION ROUTES 
 @app.route('/home')
 def home():
     if 'user_id' not in session:
         return redirect(url_for('login'))
+    
     return render_template('home.html', username=session.get('username'))
 
 @app.route('/api/register', methods=['POST'])

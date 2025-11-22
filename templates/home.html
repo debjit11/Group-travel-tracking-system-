@@ -106,7 +106,7 @@
     <header>
         <h1>✈️ Group Travel Tracking System</h1>
         <div class="user-info">
-            <span id="username-display"></span>
+            <span id="username-display" style="font-size: 16px; font-weight: bold;"></span>
             <a href="/logout" class="logout-btn">Logout</a>
         </div>
     </header>
@@ -137,9 +137,9 @@
                 <div class="row"><label>State</label><input name="state"></div>
                 <div class="row"><label>Group</label>
                     <select name="group_id">
-                        <option value="1">Group A</option>
-                        <option value="2">Group B</option>
-                        <option value="3">Group C</option>
+                        <option value="1">Group A (Kolkata to Darjeeling)</option>
+                        <option value="2">Group B (Howrah to Kashmir)</option>
+                        <option value="3">Group C (Sealdah to Puri)</option>
                     </select>
                 </div>
                 <div class="row"><label>Joined Date</label><input name="joined_date" type="date"></div>
@@ -170,8 +170,11 @@
     </main>
 
     <script>
-        // Display username
-        document.getElementById('username-display').textContent = `Welcome, ${document.body.getAttribute('data-username')}!`;
+        
+        const username = "{{ username }}";
+        if (username) {
+            document.getElementById('username-display').textContent = `Welcome, ${username}!`;
+        }
         
         // Switch tabs
         function switchTab(tabName) {
