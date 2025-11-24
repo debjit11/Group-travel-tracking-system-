@@ -9,10 +9,8 @@ instance/
 *.db
 *.sqlite3
 
-
 .env
 .env.*
-
 
 .DS_Store
 x5_take_it_app.py
