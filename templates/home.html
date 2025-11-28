@@ -100,6 +100,15 @@
         
         .no-data { text-align: center; color: #999; padding: 20px; }
         .refresh-btn { margin-bottom: 15px; }
+        
+        .link-icon { 
+            display: inline-block; 
+            margin-left: 5px; 
+            color: #667eea; 
+            cursor: pointer; 
+            text-decoration: none;
+        }
+        .link-icon:hover { color: #764ba2; }
     </style>
 </head>
 <body>
@@ -143,6 +152,7 @@
                     </select>
                 </div>
                 <div class="row"><label>Joined Date</label><input name="joined_date" type="date"></div>
+                <div class="row"><label>Location Link</label><input name="location_link" type="url" placeholder="https://maps.google.com/..."></div>
                 <div class="row"><label>Emergency Contact</label>
                     <input name="emergency_contact_name" placeholder="Name">
                     <input name="emergency_contact_phone" placeholder="Phone">
@@ -244,6 +254,7 @@
                                 <p><strong>State:</strong> ${user.state || 'N/A'}</p>
                                 <p><strong>Group:</strong> Group ${String.fromCharCode(64 + user.group_id)}</p>
                                 <p><strong>Joined:</strong> ${user.joined_date || 'N/A'}</p>
+                                <p><strong>Location Link:</strong> ${user.location_link ? `<a href="${user.location_link}" target="_blank" class="link-icon">🗺️ View Map</a>` : 'N/A'}</p>
                                 <p><strong>Emergency Contact:</strong> ${user.emergency_contact_name || 'N/A'}</p>
                                 <p><strong>Emergency Phone:</strong> ${user.emergency_contact_phone || 'N/A'}</p>
                                 <p><strong>ID Proof:</strong> ${user.id_proof_type} - ${user.id_proof_number}</p>

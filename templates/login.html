@@ -6,206 +6,346 @@
     <title>Login - Group Travel Tracking</title>
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        body { 
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; 
             background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             min-height: 100vh;
             display: flex;
             justify-content: center;
             align-items: center;
         }
-        .container {
-            background: white;
-            padding: 40px;
-            border-radius: 10px;
-            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+        
+        .container { 
+            background: white; 
+            padding: 40px; 
+            border-radius: 10px; 
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
             width: 100%;
             max-width: 400px;
         }
-        h1 {
-            text-align: center;
-            color: #333;
-            margin-bottom: 10px;
+        
+        h1 { 
+            color: #667eea; 
+            margin-bottom: 10px; 
+            text-align: center; 
             font-size: 28px;
         }
-        .subtitle {
-            text-align: center;
-            color: #888;
-            margin-bottom: 30px;
+        
+        .subtitle { 
+            text-align: center; 
+            color: #999; 
+            margin-bottom: 30px; 
             font-size: 14px;
         }
-        .form-group {
-            margin-bottom: 20px;
+        
+        .form-group { 
+            margin-bottom: 20px; 
         }
-        label {
-            display: block;
-            margin-bottom: 8px;
-            color: #333;
-            font-weight: 600;
+        
+        label { 
+            display: block; 
+            margin-bottom: 8px; 
+            font-weight: bold; 
+            color: #333; 
         }
-        input {
-            width: 100%;
-            padding: 12px;
-            border: 1px solid #ddd;
-            border-radius: 5px;
-            font-size: 14px;
-            transition: border-color 0.3s;
+        
+        input { 
+            width: 100%; 
+            padding: 12px; 
+            border: 1px solid #ddd; 
+            border-radius: 4px; 
+            font-size: 14px; 
+            transition: border 0.3s;
         }
-        input:focus {
-            outline: none;
-            border-color: #667eea;
-            box-shadow: 0 0 5px rgba(102, 126, 234, 0.1);
+        
+        input:focus { 
+            outline: none; 
+            border-color: #667eea; 
+            box-shadow: 0 0 5px rgba(102, 126, 234, 0.2);
         }
-        button {
-            width: 100%;
-            padding: 12px;
+        
+        button { 
+            width: 100%; 
+            padding: 12px; 
             background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: white;
-            border: none;
-            border-radius: 5px;
-            font-size: 16px;
-            font-weight: bold;
-            cursor: pointer;
+            color: white; 
+            border: none; 
+            border-radius: 4px; 
+            font-size: 16px; 
+            font-weight: bold; 
+            cursor: pointer; 
             transition: transform 0.2s;
-            margin-top: 10px;
         }
-        button:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4);
+        
+        button:hover { 
+            transform: translateY(-2px); 
         }
-        .toggle-link {
-            text-align: center;
-            margin-top: 20px;
-            color: #666;
+        
+        button:disabled { 
+            opacity: 0.6; 
+            cursor: not-allowed; 
         }
-        .toggle-link a {
-            color: #667eea;
-            text-decoration: none;
-            font-weight: 600;
-            cursor: pointer;
+        
+        .message { 
+            margin-top: 15px; 
+            padding: 12px; 
+            border-radius: 4px; 
+            font-weight: bold; 
+            display: none; 
         }
-        .toggle-link a:hover {
-            text-decoration: underline;
+        
+        .message.success { 
+            background: #d4edda; 
+            color: #155724; 
+            display: block; 
         }
-        #msg {
-            margin-top: 15px;
-            padding: 12px;
-            border-radius: 5px;
-            text-align: center;
+        
+        .message.error { 
+            background: #f8d7da; 
+            color: #721c24; 
+            display: block; 
+        }
+        
+        .message.info { 
+            background: #d1ecf1; 
+            color: #0c5460; 
+            display: block; 
+        }
+        
+        .link-section { 
+            text-align: center; 
+            margin-top: 20px; 
+            color: #666; 
+        }
+        
+        a { 
+            color: #667eea; 
+            text-decoration: none; 
+            font-weight: bold; 
+        }
+        
+        a:hover { 
+            text-decoration: underline; 
+        }
+        
+        .otp-input { 
+            letter-spacing: 10px; 
+            font-size: 20px; 
+            text-align: center; 
             font-weight: bold;
-            display: none;
         }
-        #msg.success {
-            background: #d4edda;
-            color: #155724;
-            display: block;
+        
+        .timer { 
+            text-align: center; 
+            color: #667eea; 
+            font-weight: bold; 
+            margin-top: 10px; 
         }
-        #msg.error {
-            background: #f8d7da;
-            color: #721c24;
-            display: block;
+        
+        .timer.expired { 
+            color: #dc3545; 
         }
-        .loader {
-            display: none;
-            text-align: center;
-            margin-top: 15px;
+        
+        .back-btn { 
+            background: #6c757d; 
+            margin-top: 10px; 
         }
-        .spinner {
-            border: 3px solid #f3f3f3;
-            border-top: 3px solid #667eea;
-            border-radius: 50%;
-            width: 30px;
-            height: 30px;
-            animation: spin 1s linear infinite;
-            margin: 0 auto;
+        
+        .back-btn:hover { 
+            background: #5a6268; 
         }
-        @keyframes spin {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
+        
+        .section { 
+            display: none; 
         }
-        .form-icon {
-            font-size: 32px;
-            text-align: center;
-            margin-bottom: 20px;
+        
+        .section.active { 
+            display: block; 
+        }
+        
+        .email-display { 
+            background: #f9f9f9; 
+            padding: 10px; 
+            border-radius: 4px; 
+            margin-bottom: 20px; 
+            text-align: center; 
+            color: #666;
         }
     </style>
 </head>
 <body>
-<div class="container">
-    <div class="form-icon"></div>
-    <h1>Welcome Back</h1>
-    <p class="subtitle">Group Travel Tracking System</p>
-    
-    <!-- Login Form -->
-    <form id="loginForm">
-        <div class="form-group">
-            <label for="username">Username</label>
-            <input type="text" id="username" name="username" required placeholder="Enter your username">
+    <div class="container">
+        <!-- Email Section -->
+        <div id="emailSection" class="section active">
+            <h1>✈️ Login</h1>
+            <p class="subtitle">Group Travel Tracking System</p>
+            
+            <form id="emailForm">
+                <div class="form-group">
+                    <label for="email">Email Address *</label>
+                    <input type="email" id="email" name="email" required placeholder="your-email@gmail.com">
+                </div>
+                <button type="submit">Send OTP</button>
+            </form>
+            
+            <div id="emailMsg" class="message"></div>
+            
+            <div class="link-section">
+                Don't have an account? <a href="/signup">Sign up here</a>
+            </div>
         </div>
-        <div class="form-group">
-            <label for="password">Password</label>
-            <input type="password" id="password" name="password" required placeholder="Enter your password">
+        
+        <!-- OTP Verification Section -->
+        <div id="otpSection" class="section">
+            <h1>✈️ Verify OTP</h1>
+            <p class="subtitle">Enter the 6-digit code sent to your email</p>
+            
+            <div class="email-display">
+                <span>Email: <strong id="displayEmail"></strong></span>
+            </div>
+            
+            <form id="otpForm">
+                <div class="form-group">
+                    <label for="otp">One-Time Password *</label>
+                    <input type="text" id="otp" name="otp" class="otp-input" maxlength="6" placeholder="000000" pattern="[0-9]{6}" required>
+                </div>
+                <div class="timer" id="timer"></div>
+                <button type="submit">Verify OTP</button>
+            </form>
+            
+            <div id="otpMsg" class="message"></div>
+            
+            <button class="back-btn" onclick="backToEmail()">Back to Email</button>
         </div>
-        <button type="submit">Login</button>
-        <div class="loader" id="loader"><div class="spinner"></div></div>
-    </form>
-    
-    <div id="msg"></div>
-    
-    <div class="toggle-link">
-        Don't have an account? <a onclick="goToSignup()">Sign Up Here</a>
     </div>
-</div>
 
-<script>
-    document.getElementById('loginForm').addEventListener('submit', async (e) => {
-        e.preventDefault();
+    <script>
+        const emailForm = document.getElementById('emailForm');
+        const otpForm = document.getElementById('otpForm');
+        const emailSection = document.getElementById('emailSection');
+        const otpSection = document.getElementById('otpSection');
+        const emailInput = document.getElementById('email');
+        const otpInput = document.getElementById('otp');
+        const emailMsg = document.getElementById('emailMsg');
+        const otpMsg = document.getElementById('otpMsg');
+        const displayEmail = document.getElementById('displayEmail');
+        const timer = document.getElementById('timer');
         
-        const username = document.getElementById('username').value;
-        const password = document.getElementById('password').value;
-        const msgDiv = document.getElementById('msg');
-        const loader = document.getElementById('loader');
+        let otpExpireTime = null;
+        let timerInterval = null;
         
-        loader.style.display = 'block';
-        
-        try {
-            const response = await fetch('/login', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify({ username, password })
-            });
+        // Handle email submission
+        emailForm.addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const email = emailInput.value;
             
-            const result = await response.json();
-            
-            msgDiv.textContent = result.message;
-            
-            if (result.success) {
-                msgDiv.classList.remove('error');
-                msgDiv.classList.add('success');
-                console.log('✓ Login successful!');
-                setTimeout(() => {
-                    window.location.href = '/home';
-                }, 1000);
-            } else {
-                msgDiv.classList.remove('success');
-                msgDiv.classList.add('error');
-                console.log('✗ Login failed:', result.message);
+            if (!email) {
+                showMessage(emailMsg, 'Please enter your email', 'error');
+                return;
             }
-        } catch (error) {
-            msgDiv.textContent = 'Error: ' + error.message;
-            msgDiv.classList.remove('success');
-            msgDiv.classList.add('error');
-            console.error('✗ Error:', error);
-        } finally {
-            loader.style.display = 'none';
+            
+            try {
+                const response = await fetch('/login', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ email })
+                });
+                
+                const result = await response.json();
+                
+                if (result.success) {
+                    displayEmail.textContent = email;
+                    emailSection.classList.remove('active');
+                    otpSection.classList.add('active');
+                    otpExpireTime = Date.now() + (5 * 60 * 1000);
+                    startTimer();
+                    otpInput.focus();
+                    showMessage(otpMsg, result.message, 'info');
+                    console.log('✓ OTP sent successfully');
+                } else {
+                    showMessage(emailMsg, result.message, 'error');
+                }
+            } catch (error) {
+                showMessage(emailMsg, 'Error: ' + error.message, 'error');
+            }
+        });
+        
+        // Handle OTP submission
+        otpForm.addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const otp = otpInput.value;
+            
+            if (!otp || otp.length !== 6) {
+                showMessage(otpMsg, 'Please enter a valid 6-digit OTP', 'error');
+                return;
+            }
+            
+            try {
+                const response = await fetch('/verify-otp-login', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ otp })
+                });
+                
+                const result = await response.json();
+                
+                if (result.success) {
+                    showMessage(otpMsg, result.message, 'success');
+                    console.log('✓ Login successful');
+                    setTimeout(() => {
+                        window.location.href = '/home';
+                    }, 1500);
+                } else {
+                    showMessage(otpMsg, result.message, 'error');
+                }
+            } catch (error) {
+                showMessage(otpMsg, 'Error: ' + error.message, 'error');
+            }
+        });
+        
+        // Helper Functions
+        function showMessage(element, message, type) {
+            element.textContent = message;
+            element.className = `message ${type}`;
         }
-    });
-    
-    function goToSignup() {
-        window.location.href = '/signup';
-    }
-</script>
+        
+        function startTimer() {
+            clearInterval(timerInterval);
+            updateTimer();
+            timerInterval = setInterval(updateTimer, 1000);
+        }
+        
+        function updateTimer() {
+            const now = Date.now();
+            const remaining = Math.max(0, otpExpireTime - now);
+            const minutes = Math.floor(remaining / 60000);
+            const seconds = Math.floor((remaining % 60000) / 1000);
+            
+            if (remaining === 0) {
+                clearInterval(timerInterval);
+                timer.textContent = 'OTP Expired';
+                timer.classList.add('expired');
+                otpForm.querySelector('button').disabled = true;
+            } else {
+                timer.textContent = `Expires in: ${minutes}:${seconds.toString().padStart(2, '0')}`;
+                timer.classList.remove('expired');
+            }
+        }
+        
+        function backToEmail() {
+            clearInterval(timerInterval);
+            otpSection.classList.remove('active');
+            emailSection.classList.add('active');
+            otpInput.value = '';
+            otpMsg.textContent = '';
+            otpMsg.className = 'message';
+            emailInput.focus();
+        }
+        
+        // Only allow numbers in OTP input
+        otpInput.addEventListener('input', (e) => {
+            e.target.value = e.target.value.replace(/[^0-9]/g, '');
+        });
+    </script>
 </body>
 </html>
