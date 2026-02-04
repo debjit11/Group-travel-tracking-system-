@@ -2,6 +2,7 @@ Travel Tracking Database System
 Email OTP Verification Based
 
 User enters email
+
         ↓
 Generate 6-digit OTP
         ↓
