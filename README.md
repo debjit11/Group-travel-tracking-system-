@@ -13,5 +13,5 @@ User enters OTP
         ↓
 Match OTP + expiry
         ↓
-If valid → Login success
+If valid →  Login success
 Else → Error message
